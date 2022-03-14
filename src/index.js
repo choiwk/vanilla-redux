@@ -12,12 +12,12 @@ import { createStore } from 'redux';
 // );
 
 const number = document.querySelector('span');
+number.innerHTML = 0;
 
 //TODO: reducer, action 생성
-
+//! const reducer 은 유일하게 data를 수정할 수 있는 공간 !
 const reducer = (count = 0, action) => {
   // state값을 수정함
-  console.log(count, action);
   if (action.type === 'ADD') {
     return count + 1;
   } else if (action.type === 'MINUS') {
@@ -25,8 +25,13 @@ const reducer = (count = 0, action) => {
   }
   return count;
 };
+
 const store = createStore(reducer);
 
+const onChangeCount = () => {
+  number.innerText = store.getState(number);
+};
+store.subscribe(onChangeCount);
 //TODO: reducer 버튼 기능 부여
 
 const add = document.getElementById('add');
