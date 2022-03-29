@@ -1,5 +1,13 @@
+import CountNumber from './ReduxNote/countNumber';
+import TodoList from './ReduxNote/todoList';
+
 function App() {
-  return <div className="App"></div>;
+  return (
+    <div>
+      <CountNumber />
+      <TodoList />
+    </div>
+  );
 }
 
 export default App;
