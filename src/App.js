@@ -1,12 +1,17 @@
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Home from './routes/Home';
 import CountNumber from './ReduxNote/countNumber';
 import TodoList from './ReduxNote/todoList';
 
 function App() {
   return (
-    <div>
-      <CountNumber />
-      <TodoList />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/count" element={<CountNumber />} />
+        <Route path="todo" element={<TodoList />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
