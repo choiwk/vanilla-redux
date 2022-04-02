@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './routes/Home';
-import CountNumber from './ReduxNote/countNumber';
-import TodoList from './ReduxNote/todoList';
+import CountNumber from './VanillaReduxNote/countNumber';
+import TodoList from './VanillaReduxNote/todoList';
 
 function App() {
   return (
