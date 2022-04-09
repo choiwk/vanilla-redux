@@ -10,11 +10,20 @@ import { Provider, useSelector, useDispatch } from 'react-redux';
 import '../ReactReduxNote/propsChaining.css';
 
 function reducer(state, action) {
+  // redux는 각각의 state의 변화를 불변하게 유지해야한다.
+  const newState = { ...state }; //새로운 state를 만드는데 과거의 state를 복제한다. 복제본을 수정하면 불변성을 유지할 수 있다.
+  console.log(newState.number);
   if (state === undefined) {
     return { number: 1 };
   }
-  // redux는 각각의 state의 변화를 불변하게 유지해야한다.
-  const newState = { ...state }; //새로운 state를 만드는데 과거의 state를 복제한다. 복제본을 수정하면 불변성을 유지할 수 있다.
+
+  switch (action.type) {
+    case 'INCREASE':
+      newState.number++;
+      return newState;
+    default:
+      return newState;
+  }
 }
 
 const store = createStore(reducer);
@@ -24,26 +33,38 @@ function PropsChaining() {
     <div id="container">
       <h1>ROOT </h1>
       <div id="grid">
-        <Left1></Left1>
-        <Right1></Right1>
+        <Provider store={store}>
+          <Left1></Left1>
+          <Right1></Right1>
+        </Provider>
       </div>
     </div>
   );
 }
 
 function Left1() {
+  const number = useSelector((state) => state.number);
+  const dispatch = useDispatch();
   return (
     <div>
-      <h1>Left1 </h1>
+      <h1>Left1 : {number}</h1>
       <Left2></Left2>
+      <button
+        onClick={() => {
+          dispatch({ type: 'INCREASE' });
+        }}
+      >
+        +
+      </button>
     </div>
   );
 }
 
 function Left2() {
+  const number = useSelector((state) => state.number);
   return (
     <div>
-      <h1>Left2 </h1>
+      <h1>Left2 : {number + 5}</h1>
       <Left3></Left3>
     </div>
   );
