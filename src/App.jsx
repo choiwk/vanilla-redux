@@ -3,6 +3,7 @@ import Home from './routes/Home';
 import CountNumber from './VanillaReduxNote/countNumber';
 import TodoList from './VanillaReduxNote/todoList';
 import Detail from './routes/Detail';
+import PropsChaining from './ReactReduxNote/propsChaining';
 
 function App() {
   return (
@@ -11,7 +12,8 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/:id" element={<Detail />} />
         <Route path="/count" element={<CountNumber />} />
-        <Route path="todo" element={<TodoList />} />
+        <Route path="/todo" element={<TodoList />} />
+        <Route path="/props" element={<PropsChaining />} />
       </Routes>
     </BrowserRouter>
   );
